@@ -1,0 +1,260 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --ink-navy: #14163a;
+  --cobalt: #2f3bd9;
+  --cobalt-dark: #232db3;
+  --mint: #c9f2dc;
+  --mint-border: #7fd0a5;
+  --paper: #f6f7fb;
+  --warm: #ff9f43;
+
+  /* Semantic Light Mode tokens */
+  --bg-canvas: #f6f7fb;
+  --bg-surface: #ffffff;
+  --bg-subtle: #eef0f7;
+  --bg-banner: #14163a;
+  --text-main: #14163a;
+  --text-muted: #494d72;
+  --accent-cobalt: #2f3bd9;
+  --btn-cobalt: #2f3bd9;
+  --btn-cobalt-hover: #232db3;
+  --btn-ink: #14163a;
+  --btn-ink-text: #ffffff;
+  --border-line: rgba(20, 22, 58, 0.13);
+  --border-strong: rgba(20, 22, 58, 0.24);
+  --grid-line: rgba(20, 22, 58, 0.045);
+  --danger: #b42318;
+  --danger-bg: #fef3f2;
+  --danger-border: rgba(180, 35, 24, 0.32);
+
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --font-body: 'DM Sans', system-ui, -apple-system, sans-serif;
+}
+
+.dark {
+  /* Primary Dark Studio palette — obsidian ink canvas with electric cobalt & mint proof */
+  --bg-canvas: #05060d;
+  --bg-surface: #0e1126;
+  --bg-subtle: #161a38;
+  --bg-banner: #0c0f22;
+  --text-main: #f4f6fc;
+  --text-muted: #a9b1d9;
+  --accent-cobalt: #8fa2ff;
+  --btn-cobalt: #2f5bff;
+  --btn-cobalt-hover: #466eff;
+  --btn-ink: #f4f6fc;
+  --btn-ink-text: #0b0d1f;
+  --border-line: rgba(244, 246, 252, 0.11);
+  --border-strong: rgba(244, 246, 252, 0.22);
+  --grid-line: rgba(143, 162, 255, 0.05);
+  --dot-color: rgba(143, 162, 255, 0.22);
+  --danger: #fca5a5;
+  --danger-bg: rgba(180, 35, 24, 0.22);
+  --danger-border: rgba(252, 165, 165, 0.35);
+}
+
+@layer base {
+  html {
+    background-color: var(--bg-canvas);
+    color: var(--text-main);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background-color: var(--bg-canvas);
+    color: var(--text-main);
+    font-size: 16px;
+    line-height: 1.6;
+    overflow-x: hidden;
+    transition: background-color 200ms ease, color 200ms ease;
+  }
+
+  h1, h2, h3, h4, .font-display {
+    font-family: var(--font-display);
+    text-wrap: balance;
+  }
+
+  p {
+    max-width: 70ch;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent-cobalt);
+    outline-offset: 3px;
+  }
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Editorial architectural grid background */
+.studio-grid-bg {
+  background-image:
+    linear-gradient(to right, var(--grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-line) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Subtle studio matrix dot backdrop for the dark welcome stage */
+.studio-dots-bg {
+  background-image: radial-gradient(var(--dot-color, rgba(20, 22, 58, 0.12)) 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* Compositor-only kinetic studio animations */
+@keyframes blob-drift-a {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(16px, -18px, 0) scale(1.045) rotate(5deg);
+  }
+}
+
+@keyframes blob-drift-b {
+  0%, 100% {
+    transform: translate3d(0, 0, 0) scale(1) rotate(0deg);
+  }
+  50% {
+    transform: translate3d(-18px, 14px, 0) scale(0.96) rotate(-6deg);
+  }
+}
+
+@keyframes orbit-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbit-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, -7px, 0);
+  }
+}
+
+@keyframes marquee-slide {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.animate-blob-a {
+  animation: blob-drift-a 11s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-blob-b {
+  animation: blob-drift-b 14s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-orbit-slow {
+  transform-origin: center;
+  animation: orbit-slow 38s linear infinite;
+  will-change: transform;
+}
+
+.animate-orbit-reverse {
+  transform-origin: center;
+  animation: orbit-reverse 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-float-gentle {
+  animation: float-gentle 4.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.animate-marquee {
+  animation: marquee-slide 28s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+.is-offscreen .animate-blob-a,
+.is-offscreen .animate-blob-b,
+.is-offscreen .animate-orbit-slow,
+.is-offscreen .animate-orbit-reverse,
+.is-offscreen .animate-float-gentle,
+.is-offscreen .animate-marquee {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-blob-a,
+  .animate-blob-b,
+  .animate-orbit-slow,
+  .animate-orbit-reverse,
+  .animate-float-gentle,
+  .animate-marquee {
+    animation: none !important;
+    transform: none !important;
+  }
+}
+
+/* Print stylesheet forces crisp white paper and dark ink regardless of active UI theme */
+@media print {
+  @page {
+    size: A4;
+    margin: 14mm 16mm;
+  }
+
+  html,
+  body,
+  .dark {
+    background: #ffffff !important;
+    color: #14163a !important;
+    font-size: 11pt;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .print-sheet {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    background: #ffffff !important;
+    color: #14163a !important;
+  }
+
+  .print-break-inside-avoid {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+}
